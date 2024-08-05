@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>เอร็ดอร่อย ทำสดจากมือ(หนีไป!!!!)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+    <link href="https://fonts.cdnfonts.com/css/subscribe" rel="stylesheet">
+                
+    <style>
+            :root {
+            --primary-color: #C44638;
+            --secondary-color: #2C2C44;
+            --accent-color: #8F9AAE;
+            --background-color: #EEF2F5;
+            --text-color: #2C2C44;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .navbar {
+            background-color: var(--secondary-color);
+            padding: 15px 0;
+        }
+        
+        .navbar-brand {
+            color: #fff !important;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .nav-link {
+            color: #fff !important;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+        
+        .carousel-item {
+            height: 80vh;
+            background-size: cover;
+            background-position: center center;
+        }
+        
+        .carousel-caption {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .carousel-caption h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: darken(var(--primary-color), 10%);
+            border-color: darken(var(--primary-color), 10%);
+        }
+        
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-img-top {
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .card-body h1 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 40px 0;
+        }
+        
+        .social-icons a {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-right: 15px;
+            transition: color 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: var(--primary-color);
+        }
+
+        .carousel-item {
+            height: 80vh;
+            background-size: cover;
+            background-position: center center;
+        }
+        
+        .carousel-caption {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .carousel-caption h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        #orderButton {
+            font-size: 18px;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #C44638;
+            color: #EEF2F5;
+            border: none;
+            border-radius: 5px;
+        }
+        #orderButton:hover {
+            background-color: #782E25;
+        }
+        #popup {
+            display: none;
+            position: fixed;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #EEF2F5;
+            padding: 0px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            color: #2C2C44;
+        }
+        #closePopup {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            color: #8F9AAE;
+        }
+        #backgroundText {
+            font-family: 'Subscribe', sans-serif;              
+            position: absolute;
+            top: 200px;
+            left: 300px;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            color: rgba(44, 44, 68, 0.1);
+            font-size: 2rem;
+            line-height: 1.2;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">เอร็ดอร่อย ทำสดจากมือ</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./src/shopping.html">เมนู</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./src/Cart.html">ตะกร้าสินค้า</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./src/bill.html">บิล</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+          <div class="carousel-item active" style="background-image: url('../assets/minotaurPoster.jpg');">
+              <div class="container">
+                  <div class="carousel-caption text-start">
+                      <h1>สัมผัสรสชาติแห่งความพิเศษ</h1>
+                      <p>ฉลองเปิดร้านแจกคูปองลด 70%</p>
+                      <p><a class="btn btn-lg btn-primary" id="orderButton" href="#" role="button">รับคูปอง</a></p>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+      </button>
+  </div>
+
+  <div id="popup">
+    <span id="closePopup">&times;</span>
+    <div id="canvas-container">
+        <div id="backgroundText" style="color: #2C2C44;">MinotaurMilkNo1</div>
+    </div>
+  </div>
+
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <img
+            class="card-img-top"
+            src="https://i.pinimg.com/564x/e2/07/87/e207871b1ef70f5a787a556db0c92e59.jpg"
+            alt="Thumbnail [100%x225]"
+          />
+          <div class="card-body">
+            <h1>สุ่มอาหาร</h1>
+            <p class="card-text">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-secondary"
+                >
+                   View
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <img
+            class="card-img-top"
+            src="https://i.pinimg.com/736x/cb/76/68/cb766877ab99089b4df401aa97b8c37e.jpg"
+            alt="Thumbnail [100%x225]"
+          />
+          <div class="card-body">
+            <h1>ข้าวกะเพรา</h1>
+            <p class="card-text">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-secondary"
+                >
+                  View
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <img
+            class="card-img-top"
+            src="https://i.pinimg.com/564x/61/2c/5f/612c5f93bd06156712c560f2a9f86115.jpg"
+            alt="Thumbnail [100%x225]"
+          />
+          <div class="card-body">
+            <h1>ก๋วยเตี๋ยว</h1>
+            <p class="card-text">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-secondary"
+                >
+                  View
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <img
+            class="card-img-top"
+            src="https://i.pinimg.com/564x/4c/b9/77/4cb977319dc955eb16c9df4d66108100.jpg"
+            alt="Thumbnail [100%x225]"
+          />
+          <div class="card-body">
+            <h1>ยำ</h1>
+            <p class="card-text">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-secondary"
+                >
+                 
+                  View
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <img
+            class="card-img-top"
+            src="https://i.pinimg.com/564x/92/51/21/925121d9e2928d2566cd29f057ce5710.jpg"
+            alt="Thumbnail [100%x225]"
+          />
+          <div class="card-body">
+            <h1>ของทอด</h1>
+            <p class="card-text">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-secondary"
+                >
+                 View
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <img
+            class="card-img-top"
+            src="https://i.pinimg.com/564x/e6/f3/35/e6f335b7b91836d9b1ebc762dfec1830.jpg"
+            alt="Thumbnail [100%x225]"
+          />
+          <div class="card-body">
+            <h1>เครื่องดื่ม</h1>
+            <p class="card-text">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-secondary"
+                >
+                   View
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <img
+            class="card-img-top"
+            src="https://i.pinimg.com/564x/b0/eb/3a/b0eb3af4cc1c5b02ad9b635236387c98.jpg"
+            alt="Thumbnail [100%x225]"
+          />
+          <div class="card-body">
+            <h1>ของหวาน</h1>
+            <p class="card-text">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-secondary"
+                >
+                   View
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer mt-5">
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-4 mb-4 mb-lg-0">
+              <h5>เกี่ยวกับเรา</h5>
+              <p>เอร็ดอร่อย ทำสดจากมือ นำเสนออาหารคุณภาพระดับพระกาฬ ที่คัดสรรมาเพื่อความอร่อยถูกปากทุกท่าน</p>
+          </div>
+          <div class="col-lg-4 mb-4 mb-lg-0">
+              <h5>ลิงก์ด่วน</h5>
+              <ul class="list-unstyled">
+                  <li><a href="#" class="text-white">หน้าหลัก</a></li>
+                  <li><a href="#" class="text-white">เมนู</a></li>
+                  <li><a href="#" class="text-white">ติดต่อเรา</a></li>
+              </ul>
+          </div>
+          <div class="col-lg-4">
+              <h5>ติดตามเรา</h5>
+              <div class="social-icons">
+                  <a href="#"><i class="fab fa-facebook-f"></i></a>
+                  <a href="#"><i class="fab fa-twitter"></i></a>
+                  <a href="#"><i class="fab fa-instagram"></i></a>
+              </div>
+          </div>
+      </div>
+      <hr class="mt-4 mb-3">
+      <p class="text-center mb-0">&copy; 2024 เอร็ดอร่อย ทำสดจากมือ. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    var Example = Example || {};
+    Example.wreckingBall = function() {
+        var Engine = Matter.Engine,
+            Render = Matter.Render,
+            Runner = Matter.Runner,
+            Composites = Matter.Composites,
+            MouseConstraint = Matter.MouseConstraint,
+            Mouse = Matter.Mouse,
+            Composite = Matter.Composite,
+            Bodies = Matter.Bodies,
+            Events = Matter.Events;
+
+        var engine = Engine.create(),
+            world = engine.world;
+
+        var render = Render.create({
+            element: document.getElementById('canvas-container'),
+            engine: engine,
+            options: {
+                width: 800,
+                height: 600,
+                showAngleIndicator: true,
+                wireframes: false,
+                background: 'transparent'
+            }
+        });
+
+        Render.run(render);
+
+        var runner = Runner.create();
+        Runner.run(runner, engine);
+
+        var stack = Composites.stack(300, 100, 6, 20, 0, 0, function(x, y, column, row) {
+            var fillColor = (column + row) % 2 === 0 ? '#8F9AAE' : '#EEF2F5';
+            var box = Bodies.rectangle(x, y, 40, 40, {
+                render: {
+                    fillStyle: fillColor,
+                    strokeStyle: '#8F9AAE',
+                    lineWidth: 2
+                }
+            });
+            box.initialPosition = { x: x, y: y };
+            return box;
+        });
+        
+        Composite.add(world, [
+            stack,
+            Bodies.rectangle(400, 0, 800, 50, { isStatic: true, render: { fillStyle: '#2C2C44' } }),
+            Bodies.rectangle(400, 600, 800, 50, { isStatic: true, render: { fillStyle: '#2C2C44' } }),
+            Bodies.rectangle(800, 300, 50, 600, { isStatic: true, render: { fillStyle: '#2C2C44' } }),
+            Bodies.rectangle(0, 300, 50, 600, { isStatic: true, render: { fillStyle: '#2C2C44' } })
+        ]);
+        
+        var axe = Bodies.rectangle(100, 300, 100, 100, { 
+            density: 0.04,
+            frictionAir: 0.001,
+            render: {
+                sprite: {
+                    texture: '../assets/noun-axe.svg',
+                    xScale: 0.1,
+                    yScale: 0.1
+                }
+            }
+        });
+        
+        Composite.add(world, axe);
+
+        var mouse = Mouse.create(render.canvas),
+            mouseConstraint = MouseConstraint.create(engine, {
+                mouse: mouse,
+                constraint: {
+                    stiffness: 0.2,
+                    render: {
+                        visible: false
+                    }
+                }
+            });
+
+        Composite.add(world, mouseConstraint);
+        render.mouse = mouse;
+
+        Render.lookAt(render, {
+            min: { x: 0, y: 0 },
+            max: { x: 800, y: 600 }
+        });
+
+        Events.on(engine, 'afterUpdate', function() {
+            var bodies = Composite.allBodies(world);
+            bodies.forEach(function(body) {
+                if (body.initialPosition) {
+                    var dx = body.position.x - body.initialPosition.x;
+                    var dy = body.position.y - body.initialPosition.y;
+                    var distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance > 20) {
+                        body.render.fillStyle = '#FFC107';
+                    }
+                }
+            });
+        });
+    };
+
+    document.getElementById('orderButton').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('popup').style.display = 'block';
+            Example.wreckingBall();
+        });
+
+        document.getElementById('closePopup').addEventListener('click', function() {
+            document.getElementById('popup').style.display = 'none';
+        });
+
+        document.getElementById('startOrderBtn').addEventListener('click', function() {
+            console.log('Starting order process');
+        });
+
+        // Close popup
+        document.getElementById('popup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+            }
+        });
+
+        // Adjust Matter.js canvas size
+        function adjustCanvasSize() {
+            var canvas = document.querySelector("#canvas-container canvas");
+            if (canvas) {
+                canvas.width = document.getElementById('canvas-container').offsetWidth;
+                canvas.height = document.getElementById('canvas-container').offsetHeight;
+            }
+        }
+
+        window.addEventListener('resize', adjustCanvasSize);
+        document.getElementById('orderButton').addEventListener('click', function() {
+            setTimeout(adjustCanvasSize, 0);
+        });
+    </script>
+</body>
+</html>
